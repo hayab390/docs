@@ -10,26 +10,60 @@
     </style>
 </head>
 <body>
-    <button onclick="play();">play</button>
+    <button onclick="play();">1</button>
+    <button onclick="play7();">7</button>
     <script>
-        const ctx = new AudioContext();
+        function play(){
+            const ctx = new AudioContext();
     
-        // 1秒間鳴らすための終了時間を設定
-        const endTime = ctx.currentTime + 0.5;
+            // GainNodeの作成
+            const gainNode = ctx.createGain();
+            gainNode.gain.setValueAtTime(0.1, ctx.currentTime); // 音量を小さく設定
+            gainNode.connect(ctx.destination); // GainNodeをAudioContextの出力に接続
+
+            // 1秒間鳴らすための終了時間を設定
+            const endTime = ctx.currentTime + 0.2;
+            
+            // オシレーター1の作成と設定
+            const oscillator1 = ctx.createOscillator();
+            oscillator1.frequency.setValueAtTime(697, ctx.currentTime); // A4の音（440Hz）
+            oscillator1.connect(gainNode); // GainNodeを介して出力に接続
+            oscillator1.start(ctx.currentTime);
+            oscillator1.stop(endTime);
+            
+            // オシレーター2の作成と設定
+            const oscillator2 = ctx.createOscillator();
+            oscillator2.frequency.setValueAtTime(1209, ctx.currentTime); // 約E5の音（660Hz）
+            oscillator2.connect(gainNode); // GainNodeを介して出力に接続
+            oscillator2.start(ctx.currentTime);
+            oscillator2.stop(endTime);
+        }
+        function play7(){
+            const ctx = new AudioContext();
+    
+            // GainNodeの作成
+            const gainNode = ctx.createGain();
+            gainNode.gain.setValueAtTime(0.1, ctx.currentTime); // 音量を小さく設定
+            gainNode.connect(ctx.destination); // GainNodeをAudioContextの出力に接続
+
+            // 1秒間鳴らすための終了時間を設定
+            const endTime = ctx.currentTime + 0.2;
+            
+            // オシレーター1の作成と設定
+            const oscillator1 = ctx.createOscillator();
+            oscillator1.frequency.setValueAtTime(852, ctx.currentTime); // A4の音（440Hz）
+            oscillator1.connect(gainNode); // GainNodeを介して出力に接続
+            oscillator1.start(ctx.currentTime);
+            oscillator1.stop(endTime);
+            
+            // オシレーター2の作成と設定
+            const oscillator2 = ctx.createOscillator();
+            oscillator2.frequency.setValueAtTime(1209, ctx.currentTime); // 約E5の音（660Hz）
+            oscillator2.connect(gainNode); // GainNodeを介して出力に接続
+            oscillator2.start(ctx.currentTime);
+            oscillator2.stop(endTime);
+        }
         
-        // オシレーター1の作成と設定
-        const oscillator1 = ctx.createOscillator();
-        oscillator1.frequency.setValueAtTime(440, ctx.currentTime); // A4の音（440Hz）
-        oscillator1.connect(ctx.destination);
-        oscillator1.start(ctx.currentTime);
-        oscillator1.stop(endTime);
-        
-        // オシレーター2の作成と設定
-        const oscillator2 = ctx.createOscillator();
-        oscillator2.frequency.setValueAtTime(660, ctx.currentTime); // 約E5の音（660Hz）
-        oscillator2.connect(ctx.destination);
-        oscillator2.start(ctx.currentTime);
-        oscillator2.stop(endTime);
     </script>
 </body>
 </html>
