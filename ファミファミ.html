@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>テトリスではないようだ</title>
+    <style>
+		/* CSSを書くところ */
+		h1 {
+			color: blue;
+		}
+	</style>
+</head>
+<body>
+    <h1>
+        ファミファミ
+    </h1>
+    <button onclick="play();">play</button>
+    <script>
+        function play() {
+            const ctx = new AudioContext();
+            const oscillator = ctx.createOscillator();
+            let current_time = ctx.currentTime;
+    
+            const freqAndTime = [[493.883,0.3], [391.995, 0.3],[293.665, 0.3], [391.995, 0.3]];
+            for (const [freq, time] of freqAndTime) {
+                oscillator.frequency.setValueAtTime(freq, current_time);
+                current_time += time;
+            }
+    
+            oscillator.connect(ctx.destination);
+            oscillator.start(ctx.currentTime);
+            oscillator.stop(current_time);
+        }
+        window.AudioContext = window.AudioContext || window.webkitAudioContext;
+    </script>
+    
+    
+    
+</body>
+</html>
