@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>call</title>
+
+    <style>
+    </style>
+</head>
+<body>
+    <button onclick="play();">play</button>
+    <script>
+        const ctx = new AudioContext();
+    
+        // 1秒間鳴らすための終了時間を設定
+        const endTime = ctx.currentTime + 0.5;
+        
+        // オシレーター1の作成と設定
+        const oscillator1 = ctx.createOscillator();
+        oscillator1.frequency.setValueAtTime(440, ctx.currentTime); // A4の音（440Hz）
+        oscillator1.connect(ctx.destination);
+        oscillator1.start(ctx.currentTime);
+        oscillator1.stop(endTime);
+        
+        // オシレーター2の作成と設定
+        const oscillator2 = ctx.createOscillator();
+        oscillator2.frequency.setValueAtTime(660, ctx.currentTime); // 約E5の音（660Hz）
+        oscillator2.connect(ctx.destination);
+        oscillator2.start(ctx.currentTime);
+        oscillator2.stop(endTime);
+    </script>
+</body>
+</html>
