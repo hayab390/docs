@@ -1,34 +1,140 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>call</title>
-
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./images/hayab2.ico">
     <style>
+        /* .tbl caption{
+            color:red;
+        } */
+        .tbl{
+            border-collapse: collapse;
+        }
+        .tbl td{
+            border:solid 1px;
+        }
+        #board td{
+            width:50px;
+            height:50px;
+            text-align: center;
+        }
+        #board td button{
+            width:90%;
+            height: 90%;
+            font-size: x-large;
+        }
     </style>
 </head>
 <body>
-    <button onclick="p697(),p1209()">1</button>
-    <button onclick="p697(),p1336()">2</button>
-    <button onclick="p697(),p1477()">3</button>
-    <button onclick="p770(),p1209()">4</button>
-    <button onclick="p770(),p1336()">5</button>
-    <button onclick="p770(),p1477()">6</button>
-    <button onclick="p852(),p1209()">7</button>
-    <button onclick="p852(),p1336()">8</button>
-    <button onclick="p852(),p1477()">9</button>
-    <button onclick="p941(),p1336();">0</button>
-    <button onclick="p941(),p1209();">*</button>
-    <button onclick="p941(),p1477();">#</button>
-    <button onclick="p697(),p1633();">A</button>
-    <button onclick="p770(),p1633();">B</button>
-    <button onclick="p852(),p1633();">C</button>
-    <button onclick="p941(),p1633();">D</button>
-
-    <div>
+    <a href="./index.html">←homepage</a>
+    <table id="board">
+        <tr>
+            <td><button onclick="p697(),p1209()">1</button></td>
+            <td><button onclick="p697(),p1336()">2</button></td>
+            <td><button onclick="p697(),p1477()">3</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="p770(),p1209()">4</button></td>
+            <td><button onclick="p770(),p1336()">5</button></td>
+            <td><button onclick="p770(),p1477()">6</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="p852(),p1209()">7</button></td>
+            <td><button onclick="p852(),p1336()">8</button></td>
+            <td><button onclick="p852(),p1477()">9</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="p941(),p1209();">*</button></td>
+            <td><button onclick="p941(),p1336();">0</button></td>
+            <td><button onclick="p941(),p1477();">#</button></td>
+        </tr>
+        <tr>
+            <td><button onclick="p697(),p1633();">A</button></td>
+            <td><button onclick="p770(),p1633();">B</button></td>
+            <td><button onclick="p852(),p1633();">C</button></td>
+            <td><button onclick="p941(),p1633();">D</button></td>
+        </tr>
+    </table>
+    <!-- <div>
         <img src="images/phone_number.png"style="width:300px" alt="">
+    </div> -->
+    <div>
+        <table class="tbl">
+            <caption>
+                ダイヤル番号の周波数
+            </caption>
+            <tr>
+                <td>ダイヤル番号</td>
+                <td>周波数</td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>697Hz 及び 1,209Hz</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>697Hz 及び 1,336Hz</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>697Hz 及び 1,477Hz</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>770Hz 及び 1,209Hz</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>770Hz 及び 1,336Hz</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td>770Hz 及び 1,477Hz</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>852Hz 及び 1,209Hz</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td>852Hz 及び 1,336Hz</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td>852Hz 及び 1,477Hz</td>
+            </tr>
+            <tr>
+                <td>0</td>
+                <td>941Hz 及び 1,336Hz</td>
+            </tr>
+            <tr>
+                <td>*</td>
+                <td>941Hz 及び 1,209Hz</td>
+            </tr>
+            <tr>
+                <td>#</td>
+                <td>941Hz 及び 1,477Hz</td>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td>697Hz 及び 1,633Hz</td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <td>770Hz 及び 1,633Hz</td>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td>852Hz 及び 1,633Hz</td>
+            </tr>
+            <tr>
+                <td>D</td>
+                <td>941Hz 及び 1,633Hz</td>
+            </tr>    
+        </table>
     </div>
     <script>
         function p697(){
@@ -176,5 +282,6 @@
             oscillator1.stop(endTime);
         }
     </script>
+    <footer></footer>
 </body>
 </html>
