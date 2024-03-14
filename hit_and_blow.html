@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,8 +11,130 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
 
     <style>
+        input[type="number"]::-webkit-outer-spin-button, 
+        input[type="number"]::-webkit-inner-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+        } 
+        #back{
+            background-color: black;
+            font-weight: bold;
+            font-size: xx-large;
+            letter-spacing: 0.4rem;
+            width:fit-content;
+        }
+        table{
+            border-collapse: collapse;
+        }
+        table td{
+            border:solid 1px;
+            padding:5px 20px;
+        }
+        #log{
+            font-size: small;
+        }
+
     </style>
 </head>
 <body>
+    <a href="./index.html">
+        <img src="./images/hayab2.ico" alt="icon"class="icon">
+    </a>
+    <h1>HIT&BLOW</h1>
+    <select name="name" id="digits">
+        <option value="2">2</option>
+        <option value="3" selected>3</option>
+        <option value="4">4</option>
+    </select>
+    <input type="button" value="Game Start" onclick="start();">
+
+    <div id="output"></div>
+    <div id="back"></div>
+    <table id="table"></table>
+    
+    <input type="number" id="input">
+    <div id="log"></div>
     <footer></footer>
+    <script>
+        let ans = ""
+        function start(){
+            const digit = Number(document.getElementById("digits").value);
+            const back = document.getElementById("back");
+            back.style.backgroundColor = 'black'; 
+            console.log("answer is "+ans)
+            let arr = [0,1,2,3,4,5,6,7,8,9];
+            ans = "";
+            const table =document.getElementById("table");
+            table.innerHTML = '';
+            for (let i = 0; i < digit; i++){
+                ans += arr.splice(Math.floor(Math.random()*arr.length), 1)
+            }
+            const output = document.getElementById("output");
+            const span = document.getElementById("back")
+            output.innerHTML = 'The answer is ';
+            span.innerHTML = ans;
+        }
+
+        
+        const input = document.getElementById("input");
+        input.addEventListener("keydown",(event) => {
+            console.log(event);
+            if(event.code === "Enter"){
+                const digit = ans.length;
+                const log = document.getElementById("log");
+                const table =document.getElementById("table");
+                console.log(checkUniqueDigits(input.value, digit));
+                if (input.value == ans){
+                    const back = document.getElementById("back");
+                    back.style.backgroundColor = 'white'; 
+                }
+                if(checkUniqueDigits(input.value, digit)){
+                    if(table.innerHTML == ""){
+                        table.innerHTML = '<tr><td>number</td><td>Hits,Blows</td></tr>'
+                    }
+                    table.innerHTML += '<tr><td>'+input.value+'</td><td>'+HitAndBlow(input.value, ans)+'</td></tr>';
+                    input.value = "";
+                    log.innerHTML="";
+                }else{
+                    log.innerHTML="数は"+ans.length+"桁で、同じ数字が2回以上出てこない数にしてください。";
+                }
+
+            }
+        })
+        function HitAndBlow(val, ans){
+            let hits=0;
+            let blows=0;
+            for (let i = 0; i < ans.length;i++){
+                if (val[i]===ans[i]){
+                    hits+=1;
+                }else{
+                    if(ans.includes(val[i])){
+                        blows+=1;
+                    }
+                }
+            }
+            return [hits, blows];
+        }
+        function add2(a){
+            let da = 2;
+            return da + a;
+        }
+        // inputが正しい数字かを検証する関数
+        function checkUniqueDigits(input, a){
+            if (input.length != a){
+                return false;
+            }
+            const UniqueDigits = new Set();
+            for (let i = 0; i < input.length; i++) {
+                const digit = input[i]; // 文字列から各桁の数字を取得
+                if (UniqueDigits.has(digit)) {
+                    return false; // すでに登場した数字があればfalseを返す
+                } else {
+                    UniqueDigits.add(digit); // 新しい数字をSetに追加
+                }
+            }
+            return true;
+        }
+
+    </script>
 </body>
