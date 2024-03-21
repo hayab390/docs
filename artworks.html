@@ -11,12 +11,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
 
     <style>
+    .flex-container{
+        display: flex;
+        border: 3px solid #287AA3;
+        background-color: #DCEDF3;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    .flex-item{
+        margin: 20px;
+        max-width: 600px;
+    }
+    img{
+        max-width: 100%;
+    }
+
     </style>
 </head>
 <body>
-    <div>
-        <img src="images/baberu_c.png" style="width:500px"alt="">
-        <img src="images/slit.gif"style="width:500px" alt="">
+    <div class="flex-container">
+        <div class="flex-item"><img src="images/baberu_c.png"alt="バベルの図書館">バベルの図書館</div>
+        <div class="flex-item"><img src="images/slit.gif" alt="slit">slit</div>
+        <div class="flex-item"><img src="images/julia_set.gif" alt="julia_set">julia set</div>
+        <div class="flex-item"><img src="images/portal_gun0001-0150.gif" alt="portal_gun">portal gun</div>
+        <div class="flex-item"><img src="images/RayMarch.gif" alt="">ray marching</div>
+        <div></div>
     </div>
     <footer></footer>
 </body>
