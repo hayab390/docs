@@ -17,8 +17,6 @@
         margin: 0; 
         } 
         #back{
-            background-color: black;
-            color: black;
             font-weight: bold;
             font-size: xx-large;
             letter-spacing: 0.4rem;
@@ -33,6 +31,15 @@
         }
         #log{
             font-size: small;
+        }
+        .black{
+            background-color: black;
+            text-indent: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .white{
+            background-color: white;
         }
 
     </style>
@@ -50,7 +57,7 @@
     <input type="button" value="Game Start" onclick="start();">
 
     <div id="output"></div>
-    <div id="back"></div>
+    <div id="back"class="black"></div>
     <table id="table"></table>
     
     <input type="number" id="input">
@@ -61,8 +68,7 @@
         function start(){
             const digit = Number(document.getElementById("digits").value);
             const back = document.getElementById("back");
-            back.style.backgroundColor = 'black'; 
-            console.log("answer is "+ans)
+            back.className = 'black'
             let arr = [0,1,2,3,4,5,6,7,8,9];
             ans = "";
             const table =document.getElementById("table");
@@ -73,6 +79,7 @@
             const output = document.getElementById("output");
             const span = document.getElementById("back")
             output.innerHTML = 'The answer is ';
+            console.log("answer is "+ans)
             span.innerHTML = ans;
         }
 
@@ -85,9 +92,11 @@
                 const log = document.getElementById("log");
                 const table =document.getElementById("table");
                 console.log(checkUniqueDigits(input.value, digit));
+                // 正解した場合
                 if (input.value == ans){
                     const back = document.getElementById("back");
-                    back.style.backgroundColor = 'white'; 
+                    back.className = 'white'
+                    // hitSound()
                 }
                 if(checkUniqueDigits(input.value, digit)){
                     if(table.innerHTML == ""){
@@ -136,6 +145,20 @@
             }
             return true;
         }
-
+        function hitSound(){
+            const ctx = new AudioContext();
+            const oscillator = ctx.createOscillator();
+            let current_time = ctx.currentTime;
+    
+            const freqAndTime = [[1000,0.1], [800, 0.1]];
+            for (const [freq, time] of freqAndTime) {
+                oscillator.frequency.setValueAtTime(freq, current_time);
+                current_time += time;
+            }
+    
+            oscillator.connect(ctx.destination);
+            oscillator.start(ctx.currentTime);
+            oscillator.stop(current_time);
+        }
     </script>
 </body>
